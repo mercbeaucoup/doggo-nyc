@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
+import Map from "./components/Map";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends Component {
+  state = {
+    dogRuns: [],
+  };
+
+  async componentDidMount() {
+    const res = await axios.get(
+      "https://data.cityofnewyork.us/resource/hxx3-bwgv.json"
+    );
+    const dogRuns = res.data.map((dogRun) => {
+      return {
+        id: dogRun.objectid,
+        coords: dogRun.the_geom.coordinates,
+        zip: dogRun.zipcode,
+        borough: dogRun.borough,
+        name: dogRun.name,
+        seating: dogRun.seating,
+      };
+    });
+    this.setState({ dogRuns });
+  }
+  render() {
+    return (
+      <div>
+        <h2>Running with Reggie in NYC</h2>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          A web app that helps dog owners find the nearest dog run when out and
+          about with their pup.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <Map dogRuns={this.state.dogRuns} />
+      </div>
+    );
+  }
 }
 
 export default App;
