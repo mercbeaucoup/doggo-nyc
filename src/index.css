@@ -12,7 +12,13 @@ code {
     monospace;
 }
 
+.map-div {
+  display: flex;
+  justify-content: center;
+}
+
 .leaflet-container {
-  width: 100%;
+  width: 90%;
   height: 50vh;
+  align-self: center;
 }
