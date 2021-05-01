@@ -1,91 +1,23 @@
 import "./App.css";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Map from "./components/Map";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { fetchDogRuns } from "./store/allDogRuns";
+import { fetchUserCoords } from "./store/user";
 
 class App extends Component {
-  state = {
-    dogRuns: [],
-    lat: null,
-    lng: null,
-    zoom: 0,
-    permission: false,
-  };
+  constructor() {
+    super();
+  }
 
   async componentDidMount() {
-    const res = await axios.get(
-      "https://data.cityofnewyork.us/resource/hxx3-bwgv.json"
-    );
-    const dogRuns = res.data.map((dogRun) => {
-      let boroughName;
-      if (dogRun.borough === "M") {
-        boroughName = "Manhattan";
-      }
-      if (dogRun.borough === "X") {
-        boroughName = "Bronx";
-      }
-      if (dogRun.borough === "Q") {
-        boroughName = "Queens";
-      }
-      if (dogRun.borough === "B") {
-        boroughName = "Brooklyn";
-      }
-
-      return {
-        id: dogRun.objectid,
-        coords: dogRun.the_geom.coordinates,
-        zip: dogRun.zipcode,
-        borough: boroughName,
-        name: dogRun.name,
-        seating: dogRun.seating,
-      };
-    });
-    this.setState({ dogRuns });
-
-    const successCallback = (position) => {
-      this.setState({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        zoom: 13,
-        permission: true,
-      });
-    };
-
-    const errorCallback = (error) => {
-      if (error.code === 1) {
-        alert(
-          "DogGo NYC is more helpful when you allow your location! For now, we'll give you a map of the whole city."
-        );
-      }
-      if (error.code === 2) {
-        alert(
-          "Oops! Something went wrong in finding your location. For now, we'll give you a map of the whole city."
-        );
-      }
-      if (error.code === 3) {
-        alert(
-          "Oops! Finding your location took a little too long. For now, we'll give you a map of the whole city."
-        );
-      }
-      console.error(error);
-      this.setState({
-        lat: 40.742,
-        lng: -73.9073,
-        zoom: 9,
-        permission: false,
-      });
-    };
-
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 60000,
-    });
+    this.props.getDogRuns();
+    this.props.getUserCoords();
   }
+
   render() {
-    console.log(this.state);
     return (
       <div className="main-app-div">
         <div className="header">
@@ -95,14 +27,14 @@ class App extends Component {
             dog run when out and about with a pup in the Big Apple.
           </p>
         </div>
-        {this.state.dogRuns && this.state.lat ? (
+        {this.props.dogRuns && this.props.lat ? (
           <div className="map-div">
             <Map
-              dogRuns={this.state.dogRuns}
-              lat={this.state.lat}
-              lng={this.state.lng}
-              zoom={this.state.zoom}
-              permission={this.state.permission}
+              dogRuns={this.props.dogRuns}
+              lat={this.props.lat}
+              lng={this.props.lng}
+              zoom={this.props.zoom}
+              permission={this.props.permission}
             />
           </div>
         ) : (
@@ -115,4 +47,21 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    dogRuns: state.allDogRuns,
+    lat: state.user.lat,
+    lng: state.user.lng,
+    permission: state.user.permission,
+    zoom: state.user.zoom,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getDogRuns: () => dispatch(fetchDogRuns()),
+    getUserCoords: () => dispatch(fetchUserCoords()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
