@@ -92,7 +92,7 @@ class App extends Component {
           <h2>DogGo NYC</h2>
           <p>
             A web app that helps dog owners and walkers find the nearest dog run
-            when out and about with their pup in the Big Apple.
+            when out and about with a pup in the Big Apple.
           </p>
         </div>
         {this.state.dogRuns && this.state.lat ? (

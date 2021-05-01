@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import DogRunMarker from "./DogRunMarker";
+import YourLocationMarker from "./YourLocationMarker";
 
 export default class Map extends Component {
   render() {
@@ -24,6 +25,9 @@ export default class Map extends Component {
               lng={this.props.lng}
             />
           ))}
+        {this.props.permission && (
+          <YourLocationMarker lat={this.props.lat} lng={this.props.lng} />
+        )}
       </MapContainer>
     );
   }

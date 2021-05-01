@@ -7,7 +7,6 @@ const dogIcon = new L.Icon({
   iconUrl: dogIconImg,
   iconSize: [20, 20],
 });
-console.log(dogIcon);
 
 const DogRunMarker = (props) => {
   const dogRun = props.dogRun;
