@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Polygon, Marker, Popup } from "react-leaflet";
 import DogRunMarker from "./DogRunMarker";
 import YourLocationMarker from "./YourLocationMarker";
+import DogRunPolygons from "./DogRunPolygon";
 
 export default class Map extends Component {
   render() {
-    console.log(this.props);
     return (
       <MapContainer
         center={[this.props.lat, this.props.lng]}
@@ -28,6 +28,7 @@ export default class Map extends Component {
         {this.props.permission && (
           <YourLocationMarker lat={this.props.lat} lng={this.props.lng} />
         )}
+        <DogRunPolygons />
       </MapContainer>
     );
   }

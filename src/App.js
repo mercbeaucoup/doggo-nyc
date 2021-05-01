@@ -11,7 +11,6 @@ class App extends Component {
     lat: null,
     lng: null,
     zoom: 0,
-    error: null,
     permission: false,
   };
 
@@ -86,6 +85,7 @@ class App extends Component {
     });
   }
   render() {
+    console.log(this.state);
     return (
       <div className="main-app-div">
         <div className="header">

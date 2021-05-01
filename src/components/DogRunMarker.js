@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Marker, Popup } from "react-leaflet";
-import L, { Icon } from "leaflet";
+import L from "leaflet";
 import dogIconImg from "../static/icons/dog-paw.png";
 
 const dogIcon = new L.Icon({
@@ -9,7 +9,7 @@ const dogIcon = new L.Icon({
 });
 
 const DogRunMarker = (props) => {
-  const dogRun = props.dogRun;
+  const { dogRun } = props;
   const lat = dogRun.coords[0][0][0][1];
   const lng = dogRun.coords[0][0][0][0];
   return (
