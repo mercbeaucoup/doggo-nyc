@@ -22,3 +22,18 @@ code {
   height: 50vh;
   align-self: center;
 }
+
+.header {
+  display: flex column;
+  justify-content: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.locating-div {
+  display: flex;
+  justify-content: center;
+}
+
+.locating-msg {
+}
