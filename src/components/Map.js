@@ -11,16 +11,22 @@ export default class Map extends Component {
       favorites: [],
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
     const favorites =
       JSON.parse(window.localStorage.getItem("favorites")) || [];
-    console.log(favorites);
     this.setState({ favorites });
   }
 
-  handleDelete(evt) {}
+  handleDelete(evt) {
+    const favorites = this.state.favorites.filter(
+      (id) => id !== evt.target.value
+    );
+    window.localStorage.setItem("favorites", JSON.stringify(favorites));
+    this.setState({ favorites });
+  }
 
   handleClick(evt) {
     const favorites = [...this.state.favorites, evt.target.value];
@@ -51,6 +57,7 @@ export default class Map extends Component {
                 lng={this.props.lng}
                 isFavorite={isFavorite}
                 handleClick={this.handleClick}
+                handleDelete={this.handleDelete}
               />
             );
           })}

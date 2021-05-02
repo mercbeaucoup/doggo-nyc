@@ -22,7 +22,7 @@ class DogRunMarker extends Component {
   }
 
   render() {
-    const { dogRun, isFavorite, handleClick } = this.props;
+    const { dogRun, isFavorite, handleClick, handleDelete } = this.props;
     const lat = dogRun.coords[0][0][0][1];
     const lng = dogRun.coords[0][0][0][0];
     return (
@@ -46,7 +46,14 @@ class DogRunMarker extends Component {
                 Add To Favorites
               </button>
             ) : (
-              <button>Delete from Favorites</button>
+              <button
+                className="favorite-button"
+                type="button"
+                value={dogRun.id}
+                onClick={handleDelete}
+              >
+                Delete from Favorites
+              </button>
             )}
             <br />
             <br />
