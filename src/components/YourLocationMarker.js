@@ -14,7 +14,7 @@ const YourLocationMarker = (props) => {
   return (
     <Marker position={[lat, lng]} icon={youIcon}>
       <Popup position={[lat, lng]}>
-        <div>This is you!</div>
+        <div>You are here!</div>
       </Popup>
     </Marker>
   );

@@ -1,7 +1,7 @@
 const initialState = {
   lat: null,
   lng: null,
-  zoom: 9,
+  zoom: 11,
   permission: false,
   favorites: [],
 };
@@ -38,9 +38,9 @@ export const fetchUserCoords = () => {
   return async (dispatch) => {
     try {
       const successCallback = (position) => {
+        dispatch(setUserZoom(13));
         dispatch(setUserCoords(position.coords));
         dispatch(setUserPermission(true));
-        dispatch(setUserZoom(13));
       };
       const errorCallback = (error) => {
         if (error.code === 1) {
@@ -58,9 +58,6 @@ export const fetchUserCoords = () => {
             "Oops! Finding your location took a little too long. For now, we'll give you a map of the whole city."
           );
         }
-        dispatch(setUserCoords({ latitude: 40.742, longitude: -73.9073 }));
-        dispatch(setUserZoom(9));
-        dispatch(setUserPermission(false));
       };
       await navigator.geolocation.getCurrentPosition(
         successCallback,

@@ -5,10 +5,13 @@ import YourLocationMarker from "./YourLocationMarker";
 import DogRunPolygons from "./DogRunPolygon";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { connect } from "react-redux";
+import { map } from "leaflet";
+import ChangeView from "./ChangeView";
 
 toast.configure();
 
-export default class Map extends Component {
+class Map extends Component {
   constructor() {
     super();
     this.state = {
@@ -53,36 +56,56 @@ export default class Map extends Component {
   }
 
   render() {
+    const defaultLat = 40.742;
+    const defaultLng = -73.9073;
+    const defaultZoom = 11;
+    const { dogRuns, lat, lng, permission, userZoom } = this.props;
+
     return (
       <MapContainer
-        center={[this.props.lat, this.props.lng]}
-        zoom={this.props.zoom + 2}
+        center={[defaultLat, defaultLng]}
+        zoom={defaultZoom}
         scrollWheelZoom={true}
       >
+        {lat && <ChangeView center={[lat, lng]} zoom={userZoom} />}
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {this.props.dogRuns.length &&
-          this.props.dogRuns.map((dogRun) => {
+        {dogRuns.length &&
+          dogRuns.map((dogRun) => {
             const isFavorite = this.state.favorites.includes(dogRun.id);
             return (
               <DogRunMarker
                 dogRun={dogRun}
                 key={dogRun.id}
-                lat={this.props.lat}
-                lng={this.props.lng}
+                lat={lat}
+                lng={lng}
                 isFavorite={isFavorite}
                 handleClick={this.handleClick}
                 handleDelete={this.handleDelete}
               />
             );
           })}
-        {this.props.permission && (
-          <YourLocationMarker lat={this.props.lat} lng={this.props.lng} />
+        {!lat ? (
+          <div className="loading">Loading your location...</div>
+        ) : (
+          permission && <YourLocationMarker lat={lat} lng={lng} />
         )}
         <DogRunPolygons />
       </MapContainer>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    dogRuns: state.allDogRuns,
+    lat: state.user.lat,
+    lng: state.user.lng,
+    permission: state.user.permission,
+    userZoom: state.user.zoom,
+  };
+};
+
+export default connect(mapStateToProps, null)(Map);
