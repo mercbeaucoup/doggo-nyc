@@ -58,12 +58,6 @@ export const fetchUserCoords = () => {
             "Oops! Finding your location took a little too long. For now, we'll give you a map of the whole city."
           );
         }
-        this.setState({
-          lat: 40.742,
-          lng: -73.9073,
-          zoom: 9,
-          permission: false,
-        });
         dispatch(setUserCoords({ latitude: 40.742, longitude: -73.9073 }));
         dispatch(setUserZoom(9));
         dispatch(setUserPermission(false));
