@@ -3,6 +3,7 @@ const initialState = {
   lng: null,
   zoom: 9,
   permission: false,
+  favorites: [],
 };
 
 //action types

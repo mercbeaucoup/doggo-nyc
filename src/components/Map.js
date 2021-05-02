@@ -5,7 +5,31 @@ import YourLocationMarker from "./YourLocationMarker";
 import DogRunPolygons from "./DogRunPolygon";
 
 export default class Map extends Component {
+  constructor() {
+    super();
+    this.state = {
+      favorites: [],
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    const favorites =
+      JSON.parse(window.localStorage.getItem("favorites")) || [];
+    console.log(favorites);
+    this.setState({ favorites });
+  }
+
+  handleDelete(evt) {}
+
+  handleClick(evt) {
+    const favorites = [...this.state.favorites, evt.target.value];
+    window.localStorage.setItem("favorites", JSON.stringify(favorites));
+    this.setState({ favorites });
+  }
+
   render() {
+    console.log("this.state in mapjs", this.state);
     return (
       <MapContainer
         center={[this.props.lat, this.props.lng]}
@@ -17,14 +41,19 @@ export default class Map extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {this.props.dogRuns.length &&
-          this.props.dogRuns.map((dogRun) => (
-            <DogRunMarker
-              dogRun={dogRun}
-              key={dogRun.id}
-              lat={this.props.lat}
-              lng={this.props.lng}
-            />
-          ))}
+          this.props.dogRuns.map((dogRun) => {
+            const isFavorite = this.state.favorites.includes(dogRun.id);
+            return (
+              <DogRunMarker
+                dogRun={dogRun}
+                key={dogRun.id}
+                lat={this.props.lat}
+                lng={this.props.lng}
+                isFavorite={isFavorite}
+                handleClick={this.handleClick}
+              />
+            );
+          })}
         {this.props.permission && (
           <YourLocationMarker lat={this.props.lat} lng={this.props.lng} />
         )}
