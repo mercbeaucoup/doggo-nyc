@@ -26,7 +26,10 @@ export default class Map extends Component {
 
   handleDelete(evt) {
     const notify = () => {
-      toast("You've deleted this dog run from your favorites!");
+      toast.warning(`You've deleted this dog run from your favorites!`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 4000,
+      });
     };
     const favorites = this.state.favorites.filter(
       (id) => id !== evt.target.value
@@ -37,9 +40,16 @@ export default class Map extends Component {
   }
 
   handleClick(evt) {
+    const notify = () => {
+      toast.success("You've added this dog run to your favorites!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 4000,
+      });
+    };
     const favorites = [...this.state.favorites, evt.target.value];
     window.localStorage.setItem("favorites", JSON.stringify(favorites));
     this.setState({ favorites });
+    notify();
   }
 
   render() {
