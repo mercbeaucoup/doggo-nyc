@@ -3,6 +3,10 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import DogRunMarker from "./DogRunMarker";
 import YourLocationMarker from "./YourLocationMarker";
 import DogRunPolygons from "./DogRunPolygon";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 export default class Map extends Component {
   constructor() {
@@ -21,11 +25,15 @@ export default class Map extends Component {
   }
 
   handleDelete(evt) {
+    const notify = () => {
+      toast("You've deleted this dog run from your favorites!");
+    };
     const favorites = this.state.favorites.filter(
       (id) => id !== evt.target.value
     );
     window.localStorage.setItem("favorites", JSON.stringify(favorites));
     this.setState({ favorites });
+    notify();
   }
 
   handleClick(evt) {
@@ -35,7 +43,6 @@ export default class Map extends Component {
   }
 
   render() {
-    console.log("this.state in mapjs", this.state);
     return (
       <MapContainer
         center={[this.props.lat, this.props.lng]}

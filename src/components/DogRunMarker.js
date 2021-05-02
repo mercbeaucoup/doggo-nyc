@@ -3,8 +3,6 @@ import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import dogIconImg from "../static/icons/dog-paw.png";
 import faveIconImg from "../static/icons/star.png";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const dogIcon = new L.Icon({
   iconUrl: dogIconImg,
