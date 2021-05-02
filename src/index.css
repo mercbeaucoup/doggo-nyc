@@ -10,6 +10,25 @@ code {
     monospace;
 }
 
+.favorites-div {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+}
+.favorites-header-div {
+  display: flex;
+  justify-content: center;
+}
+
+.favorite-div-star {
+  align-self: center;
+}
+
+.single-favorite {
+  font-family: "Roboto Slab", serif;
+  font-size: small;
+}
+
 .map-div {
   display: flex;
   justify-content: center;

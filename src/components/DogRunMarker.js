@@ -15,10 +15,6 @@ const starIcon = new L.Icon({
 });
 
 class DogRunMarker extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { dogRun, isFavorite, handleClick, handleDelete } = this.props;
     const lat = dogRun.coords[0][0][0][1];
