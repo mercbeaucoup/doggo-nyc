@@ -8,6 +8,7 @@ import Header from "./Header";
 import { fetchUserCoords } from "./store/user";
 import Favorites from "./components/Favorites";
 import { toast } from "react-toastify";
+import UserMessage from "./components/UserMessage";
 
 toast.configure();
 
@@ -61,6 +62,7 @@ class App extends Component {
     return (
       <div className="main-app-div">
         <Header />
+        <UserMessage />
         <div className="map-div">
           <Map
             favorites={this.state.favorites}
@@ -82,7 +84,7 @@ const mapStateToProps = (state) => {
     dogRuns: state.allDogRuns,
     lat: state.user.lat,
     lng: state.user.lng,
-    permission: state.user.permission,
+    done: state.user.done,
     userZoom: state.user.zoom,
   };
 };

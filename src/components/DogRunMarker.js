@@ -51,11 +51,17 @@ class DogRunMarker extends Component {
             )}
             <br />
             <br />
-            <a
-              href={`https://www.google.com/maps/dir/${this.props.lat},${this.props.lng}/${lat},${lng}`}
-            >
-              Get directions!
-            </a>
+            {this.props.lat ? (
+              <a
+                href={`https://www.google.com/maps/dir/${this.props.lat},${this.props.lng}/${lat},${lng}`}
+              >
+                Get directions!
+              </a>
+            ) : (
+              <a href={`https://www.google.com/maps/dir//${lat},${lng}`}>
+                Get Directions
+              </a>
+            )}
           </div>
         </Popup>
       </Marker>

@@ -47,14 +47,22 @@ code {
   text-align: center;
 }
 
+.title-and-logo {
+  display: flex row;
+  justify-content: center;
+}
+
 .website-desc {
   font-family: "Roboto Slab", serif;
   font-size: small;
 }
 
-.locating-div {
-  display: flex;
-  justify-content: center;
+.loading-msg {
+  text-align: center;
+  font-style: italic;
+  font-size: small;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .locating-msg {

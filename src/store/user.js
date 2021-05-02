@@ -2,14 +2,14 @@ const initialState = {
   lat: null,
   lng: null,
   zoom: 11,
-  permission: false,
+  done: false,
   favorites: [],
 };
 
 //action types
 const SET_USER_COORDS = "SET_USER_LAT";
 const SET_USER_ZOOM = "SET_USER_ZOOM";
-const SET_USER_PERMISSION = "SET_USER_PERMISSION";
+const SET_USER_DONE = "SET_USER_DONE";
 
 //action creators
 export const setUserCoords = (coords) => {
@@ -26,10 +26,10 @@ export const setUserZoom = (zoom) => {
   };
 };
 
-export const setUserPermission = (permission) => {
+export const setUserDone = (isDone) => {
   return {
-    type: SET_USER_PERMISSION,
-    permission,
+    type: SET_USER_DONE,
+    isDone,
   };
 };
 
@@ -40,7 +40,7 @@ export const fetchUserCoords = () => {
       const successCallback = (position) => {
         dispatch(setUserZoom(13));
         dispatch(setUserCoords(position.coords));
-        dispatch(setUserPermission(true));
+        dispatch(setUserDone(true));
       };
       const errorCallback = (error) => {
         if (error.code === 1) {
@@ -58,6 +58,7 @@ export const fetchUserCoords = () => {
             "Oops! Finding your location took a little too long. For now, we'll give you a map of the whole city."
           );
         }
+        dispatch(setUserDone(true));
       };
       await navigator.geolocation.getCurrentPosition(
         successCallback,
@@ -83,10 +84,10 @@ export default function userReducer(state = initialState, action) {
         lat: action.coords.latitude,
         lng: action.coords.longitude,
       };
-    case SET_USER_PERMISSION:
+    case SET_USER_DONE:
       return {
         ...state,
-        permission: action.permission,
+        done: action.isDone,
       };
     case SET_USER_ZOOM:
       return {

@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
     dogRuns: state.allDogRuns,
     lat: state.user.lat,
     lng: state.user.lng,
-    permission: state.user.permission,
+    done: state.user.done,
     userZoom: state.user.zoom,
   };
 };
