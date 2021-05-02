@@ -49,7 +49,16 @@ code {
 
 .title-and-logo {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.logo-and-desc {
+  display: flex column;
+  justify-content: flex-start;
+}
+
+.main-logo {
+  align-self: center;
 }
 
 .website-desc {

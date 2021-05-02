@@ -4,13 +4,13 @@ import logo from "./static/doggo-nyc-logo.png";
 
 const Header = () => {
   const logoStyle = {
-    height: "90px",
+    height: "130px",
   };
   return (
     <div className="header">
       <div className="title-and-logo">
         <img src={logo} className="main-logo" style={logoStyle} alt={""} />
-        <div>
+        <div className="logo-and-desc">
           <h1>DogGo NYC</h1>
           <p className="website-desc">
             A mobile website that helps dog owners find the nearest dog run when
