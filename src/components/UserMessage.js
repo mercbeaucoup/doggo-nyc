@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getDistance, convertDistance } from "geolib";
+import { getDistance } from "geolib";
 
 const UserMessage = (props) => {
   let closest;
@@ -18,7 +18,6 @@ const UserMessage = (props) => {
       return a.distance - b.distance;
     });
     closest = dogRunsWithDist[0];
-    console.log(closest);
   }
 
   return (
@@ -29,16 +28,14 @@ const UserMessage = (props) => {
         </p>
       ) : closest ? (
         <p className="loading-msg">
-          The closest dog run is {closest.dogRun.name}. <br />
-          It is {closest.distance * 0.000621371} miles away.
+          {closest.dogRun.name} is{" "}
+          {Math.round(closest.distance * 0.000621371 * 100) / 100} miles away.
           <br />
-          <br />
-          <button>Take me there!</button>
         </p>
       ) : (
         <p className="loading-msg">
           If you allow your location, DogGo NYC will determine which dog run is
-          closest.
+          closest to you.
         </p>
       )}
     </div>
