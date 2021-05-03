@@ -6,7 +6,13 @@ const SingleFavorite = (props) => {
   return (
     <div className="single-favorite">
       <p>
-        {name} in {borough}, New York {zip}{" "}
+        {name}
+        <br />
+        {borough}, New York {zip} <br />
+        <button type="button" value={id} onClick={props.handleRecenter}>
+          Take me there!
+        </button>
+        {"  "}
         <button type="button" value={id} onClick={handleDelete}>
           x
         </button>

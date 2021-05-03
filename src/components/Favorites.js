@@ -31,9 +31,10 @@ const Favorites = (props) => {
         favoriteDogRuns.map((favorite) => {
           return (
             <SingleFavorite
-              key={favorite}
+              key={favorite.id}
               favorite={favorite}
               handleDelete={props.handleDelete}
+              handleRecenter={props.handleRecenter}
             />
           );
         })

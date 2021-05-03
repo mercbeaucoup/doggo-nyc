@@ -65,7 +65,6 @@ class App extends Component {
     const currentDogRun = this.props.dogRuns.find(
       (dogRun) => dogRun.id === currentDogRunId
     );
-    console.log(currentDogRun);
     this.setState({ currentDogRun });
   }
 
@@ -85,6 +84,7 @@ class App extends Component {
         <Favorites
           favorites={this.state.favorites}
           handleDelete={this.handleDelete}
+          handleRecenter={this.handleRecenter}
         />
       </div>
     );
