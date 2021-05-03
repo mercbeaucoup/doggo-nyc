@@ -24,6 +24,7 @@ class Map extends Component {
       handleClick,
       handleDelete,
       favorites,
+      currentDogRun,
     } = this.props;
 
     return (
@@ -33,13 +34,23 @@ class Map extends Component {
         scrollWheelZoom={true}
         touchZoom={true}
       >
-        {lat ? (
+        {lat && !this.props.currentDogRun.id && (
           <div>
-            <ChangeView center={[lat, lng]} zoom={userZoom} />
+            <ChangeView center={[lat, lng]} zoom={14} />
             <YourLocationMarker lat={lat} lng={lng} />
           </div>
-        ) : (
-          <div>Loading your location...</div>
+        )}
+        {this.props.currentDogRun.id && (
+          <div>
+            <ChangeView
+              center={[
+                currentDogRun.coords[0][0][0][1],
+                currentDogRun.coords[0][0][0][0],
+              ]}
+              zoom={15}
+            />
+            <YourLocationMarker lat={lat} lng={lng} />
+          </div>
         )}
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

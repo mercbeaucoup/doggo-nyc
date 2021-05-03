@@ -31,6 +31,14 @@ const UserMessage = (props) => {
           {closest.dogRun.name} is{" "}
           {Math.round(closest.distance * 0.000621371 * 100) / 100} miles away.
           <br />
+          <br />
+          <button
+            type="button"
+            onClick={props.handleRecenter}
+            value={closest.dogRun.id}
+          >
+            Take me there!
+          </button>
         </p>
       ) : (
         <p className="loading-msg">

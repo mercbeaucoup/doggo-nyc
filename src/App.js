@@ -17,9 +17,11 @@ class App extends Component {
     super();
     this.state = {
       favorites: [],
+      currentDogRun: {},
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleRecenter = this.handleRecenter.bind(this);
   }
 
   async componentDidMount() {
@@ -58,16 +60,26 @@ class App extends Component {
     notify();
   }
 
+  handleRecenter(evt) {
+    const currentDogRunId = evt.target.value;
+    const currentDogRun = this.props.dogRuns.find(
+      (dogRun) => dogRun.id === currentDogRunId
+    );
+    console.log(currentDogRun);
+    this.setState({ currentDogRun });
+  }
+
   render() {
     return (
       <div className="main-app-div">
         <Header />
-        <UserMessage />
+        <UserMessage handleRecenter={this.handleRecenter} />
         <div className="map-div">
           <Map
             favorites={this.state.favorites}
             handleDelete={this.handleDelete}
             handleClick={this.handleClick}
+            currentDogRun={this.state.currentDogRun}
           />
         </div>
         <Favorites

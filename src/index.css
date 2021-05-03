@@ -10,6 +10,12 @@ code {
     monospace;
 }
 
+button {
+  font-family: "Roboto Slab", serif;
+  font-size: small;
+  background-color: rgb(188, 251, 155);
+}
+
 .favorites-div {
   margin-left: 20px;
   margin-right: 20px;

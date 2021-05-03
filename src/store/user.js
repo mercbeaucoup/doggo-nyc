@@ -1,7 +1,7 @@
 const initialState = {
   lat: null,
   lng: null,
-  zoom: 11,
+  zoom: 12,
   done: false,
   favorites: [],
 };
