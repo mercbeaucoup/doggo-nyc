@@ -1,6 +1,5 @@
-import "./App.css";
 import React from "react";
-import logo from "./static/doggo-nyc-logo.png";
+import logo from "../static/doggo-nyc-logo.png";
 
 const Header = () => {
   const logoStyle = {
