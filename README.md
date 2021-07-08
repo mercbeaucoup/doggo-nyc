@@ -12,6 +12,6 @@ https://doggo-nyc.herokuapp.com
 
 ## How do you interact with it?
 
-When you need to tire your pup out, pull out your cellphone and put in the above address. If you allow your location to be shared, the map will place a pin on the map where you are and zoom in to reveal the closest dog run. (If you don't allow your location to be shared, you'll be shown a )
+When you need to tire your pup out, pull out your cellphone and put in the above address. If you allow your location to be shared, the map will place a pin on the map where you are and zoom in to reveal the closest dog run. (If you don't allow your location to be shared, you'll be shown a zoomed out view of NYC.)
 
-Regardless of whether you allow your location or not, you can zoom in further to reveal the size of each dog run. You can also click on the paw icon to see additional information about each dog park. If you favorite a dog park, the paw icon will be replaced with a yellow star.
+Regardless of whether you allow your location or not, you can zoom in further to reveal the size of each dog run. You can also click on the paw icon to see additional information about each dog park. If you favorite a dog run, the paw icon will be replaced with a yellow star. You can then view and keep track of all your favorites at the bottom of the page.
