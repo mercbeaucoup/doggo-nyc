@@ -21,6 +21,7 @@ button {
   margin-right: 20px;
   text-align: center;
 }
+
 .favorites-header-div {
   display: flex;
   justify-content: center;
@@ -53,23 +54,14 @@ button {
   text-align: center;
 }
 
-.title-and-logo {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.logo-and-desc {
-  display: flex column;
-  justify-content: flex-start;
-}
-
-.main-logo {
-  align-self: center;
+.logo-and-desc h1 {
+  margin-bottom: 0;
 }
 
 .website-desc {
   font-family: "Roboto Slab", serif;
   font-size: small;
+  margin-top: 0;
 }
 
 .loading-msg {
@@ -78,7 +70,4 @@ button {
   font-size: small;
   margin-left: 20px;
   margin-right: 20px;
-}
-
-.locating-msg {
 }

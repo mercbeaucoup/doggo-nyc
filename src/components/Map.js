@@ -8,9 +8,6 @@ import { connect } from "react-redux";
 import ChangeView from "./ChangeView";
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const defaultLat = 40.742;
@@ -20,7 +17,6 @@ class Map extends Component {
       dogRuns,
       lat,
       lng,
-      userZoom,
       handleClick,
       handleDelete,
       favorites,

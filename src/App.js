@@ -1,10 +1,9 @@
-import "./App.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Map from "./components/Map";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchDogRuns } from "./store/allDogRuns";
-import Header from "./Header";
+import Header from "./components/Header";
 import { fetchUserCoords } from "./store/user";
 import Favorites from "./components/Favorites";
 import { toast } from "react-toastify";
