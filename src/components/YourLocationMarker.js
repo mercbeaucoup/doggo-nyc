@@ -5,7 +5,8 @@ import youIconImg from "../static/icons/red_icon.png";
 
 const youIcon = new L.Icon({
   iconUrl: youIconImg,
-  iconSize: [20, 25],
+  iconSize: [30, 35],
+  iconAnchor: [15,35]
 });
 
 const YourLocationMarker = (props) => {
