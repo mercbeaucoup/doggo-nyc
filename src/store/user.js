@@ -7,7 +7,7 @@ const initialState = {
 };
 
 //action types
-const SET_USER_COORDS = "SET_USER_LAT";
+const SET_USER_COORDS = "SET_USER_COORDS";
 const SET_USER_ZOOM = "SET_USER_ZOOM";
 const SET_USER_DONE = "SET_USER_DONE";
 
